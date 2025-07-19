@@ -1,15 +1,14 @@
+# Express Login v1
 
 
+## Características
 
+- Parsing de JSON habilitado para procesar solicitudes.
+- Separación de código en archivos:
+  - `server.js` para el servidor principal.
+  - Carpeta `routes` para las rutas (login, registro).
+  - Carpeta `config` para configuración de base de datos con Mongoose.
+- Uso de variables de entorno para datos sensibles.
+- Integración con `dotenv` para cargar variables de entorno, especialmente con `nodemon`.
 
-## habilitamos el parsing de JSON en el cuerpo de las solicitudes
-
-##  separamos los archivos en server ,  router , config -> para la base de datos con mongoose 
-
-## instalamos mongoose y lo configuramos en la carpeta config
-
-## agragamos variables de entorno 
-importante 
-con nodemonn las variables de entorno nop funcionan asi de facil hay que instalar 
-npm i dotenv
-para que funcione
+---
