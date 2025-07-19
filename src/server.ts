@@ -1,10 +1,17 @@
-
 import express from 'express'
-import router from "./router"
+// Importar dotenv para manejar variables de entorno
+import "dotenv/config"
+import { connectDB } from './config/db'
+import router from './router'
+
 
 const app = express()
 
-
-app.use(express.json()) // habilitamos el parsing de JSON en el cuerpo de las solicitudes
+// Conectar a la base de datos
+connectDB()
+// Middleware para manejar JSON
+app.use(express.json())
 
 app.use("/", router)
+
+export default app

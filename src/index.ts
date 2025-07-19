@@ -1,17 +1,9 @@
-// 4.18.2
 
-import express from 'express'
+// index solo usamos para arrancar el servidor 
 
-const app = express()
+import server from "./server"
 
-
-
-app.get('/auth/register', (req, res) => {
-    console.log(req.body)
-})
-
-
-
-app.listen(3000, () => {
+const PORT = process.env.PORT || 4000
+server.listen(PORT, () => {
     console.log('Server is running on http://localhost:3000')
 })  
