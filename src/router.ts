@@ -1,18 +1,8 @@
 import express from 'express';
 import User from './models/User';
+import { createUser } from './controlers';
 const router = express.Router();
 
-router.post('/auth/register', async (req, res) => {
-    try {
-        await User.create(req.body);
-
-        res.status(202).json({
-            message: 'User registered successfully',
-            user: req.body.name
-        })
-    } catch (error) {
-        console.log(error.message);
-    }
-});
+router.post('/auth/register', createUser);
 
 export default router;
