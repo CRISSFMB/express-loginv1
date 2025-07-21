@@ -1,12 +1,32 @@
 import { Request, Response } from "express";
 import User from "../models/User";
+import { validationResult } from "express-validator"
 import { hashPassword } from "../utils/auth";
 
 
 export const createUser = async (req: Request, res: Response) => {
 
+    // manejar errores de expresss validator y con esto recuperamos los errores y detenemos el codigo
+
+    // esta funcion siempre toma el request 
+    let errors = validationResult(req);
+
+    console.log(errors)
+
+    // si hay errores, devolvemos un error 400 y el mensaje de error
+    if (!errors.isEmpty()) {
+        return res.status(400).json({
+            errors: errors.array(),
+        });
+    }
+
+
+
+
     // recibimos el email y la contraseña del body de la peticion
     const { email, password } = req.body;
+
+
 
     // usamos findOne para buscar si el usuario ya existe en la base de datos
     const userExist = await User.findOne({ email })
