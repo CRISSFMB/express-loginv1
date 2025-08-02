@@ -1,7 +1,8 @@
 import express from 'express';
 import { body } from 'express-validator';
-import { createUser, login } from './controlers';
+import { createUser, getuser, login } from './controlers';
 import { autenticationResult } from './middleware/autenticationResult';
+import { autenticationToken } from './middleware/autenticationToken';
 const router = express.Router();
 
 // express validator : vamos a validar el body con la funcion que nos proporciona
@@ -16,9 +17,11 @@ router.post('/auth/register',
 
 
 
-router.post("/auth",
+router.post("/auth/login",
     body("email").isEmail().withMessage("email is required"),
     body("password").notEmpty().withMessage("password is required"),
     autenticationResult,
     login)
+
+router.get("/getuser", autenticationToken, getuser)
 export default router;

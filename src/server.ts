@@ -3,12 +3,19 @@ import express from 'express'
 import "dotenv/config"
 import { connectDB } from './config/db'
 import router from './router'
+import { corsConfig } from './config/cors';
+import cors from "cors"
+connectDB()
 
 
 const app = express()
 
+//cors
+app.use(cors(corsConfig))
+
+
+
 // Conectar a la base de datos
-connectDB()
 // Middleware para manejar JSON
 app.use(express.json())
 
