@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import User from "../models/User";
 
 import { checkpassword, hashPassword } from "../utils/auth";
+import { generatejwt } from "../utils/jwt";
+import jwt from 'jsonwebtoken';
 
 
 export const createUser = async (req: Request, res: Response) => {
@@ -81,8 +83,17 @@ export const login = async (req: Request, res: Response) => {
             message: error.message
         });
     }
+    // generamos el token
+    // usamos el metodo generatejwt para generar el token
+    // pasamos el id del usuario como payload
+    const token = generatejwt({ id: user._id });
 
-    res.send("Login successful")
+    res.send(token)
 
+}
+
+
+export const getuser = async (req: Request, res: Response) => {
+    res.json(req.user)
 }
 
